@@ -1,0 +1,23 @@
+.user-info__edit-button {
+  width: 38px;
+  height: 18px;
+  margin-top: 24px;
+  background-color: transparent;
+  border: 1px solid #FFFFFF;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.user-info__edit-button {
+  outline-color: greenyellow;
+}
+
+/* @media screen and (max-width: 980px) {
+  .user-info__button {
+    position: static;
+    margin-bottom: 40px;
+  }
+} */

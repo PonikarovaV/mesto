@@ -1,0 +1,11 @@
+.popup__error_active {
+    margin-bottom: 24px;
+    padding-left: 6px;
+    font-size: 12px;
+    line-height: 15px;
+    color: #FF0000;
+}
+
+/* .popup__error_status_hidden {
+    display: none;
+} */
