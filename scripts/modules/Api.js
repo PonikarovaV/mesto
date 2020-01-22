@@ -10,14 +10,11 @@ class Api {
 
     // запрос карточек и профиля
     getPage() {
-
         return Promise.all([this.getUserInfo(), this.getCards()]);
-
     }
 
     // запрос профиля
     getUserInfo() {
-
         return fetch(`${this.baseUrl}/users/me`, {
             headers: this.headers
         })
@@ -25,14 +22,12 @@ class Api {
                 if (res.ok) {
                     return res.json();
                 }
-                return Promise.reject(`Не те пошли пользователи... ${res.status}`);
+                return Promise.reject(`Что-то пошло не так... ${res.status}`);
             });
-
     }
 
     // запрос галереи карточек
     getCards() {
-
         return fetch(`${this.baseUrl}/cards`, {
             headers: this.headers
         })
@@ -42,12 +37,10 @@ class Api {
                 }
                 return Promise.reject(`Ouch! ${res.status}`);
             });
-
     }
 
     // редактирование профиля
     editUserProfile(user) {
-
         return fetch(`${this.baseUrl}/users/me`, {
             method: 'PATCH',
             headers: this.headers,
@@ -60,14 +53,12 @@ class Api {
                 if (res.ok) {
                     return res.json();
                 }
-                return Promise.reject(`Это не наш профиль... ${res.status}`);
+                return Promise.reject(`Что-то пошло не так... ${res.status}`);
             });
-
     }
 
     // добавление карточки через форму
     addCardGallery(card) {
-
         return fetch(`${this.baseUrl}/cards`, {
             method: 'POST',
             headers: this.headers,
@@ -80,14 +71,12 @@ class Api {
                 if (res.ok) {
                     return res.json();
                 }
-                return Promise.reject(`Погодите, я забыл паспорт! ${res.status}`);
+                return Promise.reject(`Что-то пошло не так... ${res.status}`);
             });
-
     }
 
     // удаление карточки
     deleteCard(cardElement) {
-
         return fetch(`${this.baseUrl}/cards/${cardElement.dataset.id}`, {
             method: 'DELETE',
             headers: this.headers,
@@ -99,14 +88,12 @@ class Api {
                 if (res.ok) {
                     return res.json();
                 }
-                return Promise.reject(`Это нам не по силам... ${res.status}`);
+                return Promise.reject(`Что-то пошло не так... ${res.status}`);
             });
-
     }
 
     // добавление/удаление лайка
     likeCard(cardElement, method) {
-
         return fetch(`${this.baseUrl}/cards/like/${cardElement.dataset.id}`, {
             method: `${method}`,
             headers: this.headers,
@@ -118,14 +105,12 @@ class Api {
                 if (res.ok) {
                     return res.json();
                 }
-                return Promise.reject(`Такое мы не лайкаем... ${res.status}`);
+                return Promise.reject(`Что-то пошло не так... ${res.status}`);
             });
-
     }
 
     // смена аватара
     changeAvatar(avatar) {
-
         return fetch(`${this.baseUrl}/users/me/avatar`, {
             method: 'PATCH',
             headers: this.headers,
@@ -137,8 +122,7 @@ class Api {
                 if (res.ok) {
                     return res.json();
                 }
-                return Promise.reject(`Ну это не я... ${res.status}`);
+                return Promise.reject(`Что-то пошло не так... ${res.status}`);
             });
-
     }
 }

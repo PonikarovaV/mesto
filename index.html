@@ -28,54 +28,80 @@
     <div class="places-list root__section">
     
     </div>
-    <div class="popup popup__add-form">
+    <div class="popup">
       <div class="popup__content">
         <img src="./images/close.svg" alt="" class="popup__close">
         <h3 class="popup__title">Новое место</h3>
-        <form class="popup__form popup__form_add-card" name="new">
-          <input type="text" name="name" class="popup__input popup__input_add-card popup__input_type_name"
-            placeholder="Название" minlength="2" maxlength="30" required>
-          <span class="popup__error" role="status" aria-live="polite"></span>
-          <input type="url" name="link" class="popup__input popup__input_add-card popup__input_type_link-url"
-            placeholder="Ссылка на картинку" pattern="https://.*" required>
-          <span class="popup__error" role="status" aria-live="polite"></span>
-          <button type class="button popup__button popup__button_add" name="addButton">+</button>
+        <form class="popup__form" name="new">
+          <input type="text" 
+                 name="name" 
+                 id="cardName"
+                 class="popup__input"
+                 placeholder="Название" 
+                 minlength="2" 
+                 maxlength="30" 
+                 required>
+          <span id = "error-cardName" class="popup__error" role="status" aria-live="polite"></span>
+          <input type="url" 
+                 id="cardLink"
+                 name="link" 
+                 class="popup__input"
+                 placeholder="Ссылка на картинку" 
+                 pattern="https://.*" 
+                 required>
+          <span id = "error-cardLink" class="popup__error" role="status" aria-live="polite"></span>
+          <button class="button popup__button popup__button_disabled" name="addButton" disabled>+</button>
         </form>
       </div>
     </div>
-    <div class="popup popup__edit-form">
+    <div class="popup">
       <div class="popup__content">
         <img src="./images/close.svg" alt="" class="popup__close">
         <h3 class="popup__title">Редактировать профиль</h3>
-        <form class="popup__form popup__form_edit-profile" name="editProfile">
-          <input type="text" name="userName" class="popup__input popup__input_edit-profile popup__input_type_user-name"
-            placeholder="Имя" minlength="2" maxlength="30" required>
-          <span class="popup__error" role="status" aria-live="polite"></span>
-          <input type="text" name="userAbout"
-            class="popup__input popup__input_edit-profile popup__input_type_user-about" placeholder="О себе"
-             minlength="2" maxlength="30" required>
-          <span class="popup__error" role="status" aria-live="polite"></span>
-          <button type class="button popup__button popup__button_save" name="editButton">Сохранить</button>
+        <form class="popup__form" name="profile">
+          <input type="text" 
+                 name="userName"
+                 id = "userName"
+                 class="popup__input"
+                 placeholder="Имя" 
+                 minlength="2" 
+                 maxlength="30" 
+                 required>
+          <span id = "error-userName" class="popup__error" role="status" aria-live="polite"></span>
+          <input type="text" 
+                 name="userAbout"
+                 id = "userAbout"
+                 class="popup__input" 
+                 placeholder="О себе"
+                 minlength="2" 
+                 maxlength="30" 
+                 required>
+          <span id="error-userAbout" class="popup__error" role="status" aria-live="polite"></span>
+          <button type="submit" class="button popup__button popup__button_type_save popup__button_disabled" name="editButton" disabled>Сохранить</button>
         </form>
       </div>
     </div>
-    <div class="popup popup__edit-avatar-form">
+    <div class="popup">
       <div class="popup__content">
         <img src="./images/close.svg" alt="" class="popup__close">
         <h3 class="popup__title">Обновить аватар</h3>
-        <form class="popup__form popup__form_edit-avatar" name="editAvatar">
-          <input type="url" name="link" class="popup__input popup__input_avatar popup__input_type_link-url"
-          placeholder="Ссылка на картинку" pattern="https://.*" required>
-          <span class="popup__error" role="status" aria-live="polite"></span>
-          <button type class="button popup__button popup__button_avatar popup__button_disabled"
-            disabled>Сохранить</button>
+        <form class="popup__form" name="avatar">
+          <input type="url" 
+                 id="avatarLink"
+                 name="link" 
+                 class="popup__input"
+                 placeholder="Ссылка на картинку" 
+                 pattern="https://.*" 
+                 required>
+          <span id="error-avatarLink" class="popup__error" role="status" aria-live="polite"></span>
+          <button class="button popup__button popup__button_type_save popup__button_disabled" name="saveButton">Сохранить</button>
         </form>
       </div>
     </div>
-    <div class="popup popup__img">
+    <div class="popup">
       <div class="popup__picture">
         <img src="./images/close.svg" alt="" class="popup__close">
-        <img src="" alt="" class="popup__pic">
+        <img src="" alt="" class="popup__image">
       </div>
     </div>
     <div class="loader">
@@ -95,6 +121,10 @@
   <script src="./scripts/modules/Card.js"></script>
   <script src="./scripts/modules/CardList.js"></script>
   <script src="./scripts/modules/Popup.js"></script>
+  <script src="./scripts/modules/Gallery.js"></script>
+  <script src="./scripts/modules/Profile.js"></script>
+  <script src="./scripts/modules/Avatar.js"></script>
+  <script src="./scripts/modules/Preview.js"></script>
   <script src="./scripts/modules/Validation.js"></script>
   <script src="./scripts/index.js"></script>
 

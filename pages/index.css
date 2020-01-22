@@ -9,7 +9,7 @@
 @import url(../blocks/places-list/places-list.css);
 @import url(../blocks/place-card/place-card.css);
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/popup/__pic/popup__pic.css);
+@import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/loader/loader.css);
 
 body {

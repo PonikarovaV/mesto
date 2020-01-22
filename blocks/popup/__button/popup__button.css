@@ -7,3 +7,9 @@
   color: #FFFFFF;
   font-size: 36px;
 }
+
+.popup__button_type_save {
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+}

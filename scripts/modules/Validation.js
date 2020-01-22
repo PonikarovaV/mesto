@@ -1,102 +1,73 @@
 'use strict';
 
 class Validation {
-    constructor(messages) {
+    constructor(form, messages) {
 
+        this.form = form;
         this.messages = messages;
-
+        this.inputs = Array.from(this.form.querySelectorAll('.popup__input'));
+        this.button = this.form.querySelector('.popup__button');
+        this.setEventListeners = this.setEventListeners.bind(this);
+        
     }
-    // проверка на валидность поля
+
+    // слушатель полей ввода
+    setEventListeners() {
+        this.inputs.forEach( el => {
+            el.addEventListener('input', () => {
+                this.inputValidate(el);
+                this.checkFields();
+            });
+        });
+    }
+
+    // проверка поля на валидность
     inputValidate(input) {
-        console.log(input);
+        this.input = input;
+        this.errorElement = this.form.querySelector(`#error-${this.input.id}`);
 
-        if (input.validity.valueMissing) {
-            this.setInvalid(input, this.messages.imptyField);
+        if (this.input.validity.valueMissing) {
+            this.setInvalid(this.messages.imptyField);
             return false;
         }
-        if ((input.type === 'text') && (!input.validity.valid)) {
-            this.setInvalid(input, this.messages.wrongLength);
+        if ((this.input.type === 'text') && (!this.input.validity.valid)) {
+            this.setInvalid(this.messages.wrongLength);
             return false;
         }
-        if ((input.type === 'url') && (!input.validity.valid)) {
-            this.setInvalid(input, this.messages.notAnUrl);
+        if ((this.input.type === 'url') && (!this.input.validity.valid)) {
+            this.setInvalid(this.messages.notAnUrl);
             return false;
         }
-        this.setValid(input);
+        this.setValid();
         return true;
-
     }
+
     // если поле невалидно
-    setInvalid(input, message) {
-
-        input.classList.add('popup__input_invalid');
-        input.nextElementSibling.textContent = message;
-        input.nextElementSibling.classList.add('popup__error_active');
-
+    setInvalid(message) {
+        this.errorElement.textContent = message;
+        this.input.classList.add('popup__input_invalid');
     }
     // если поле валидно
-    setValid(input) {
-
-        input.classList.remove('popup__input_invalid');
-        input.nextElementSibling.textContent = '';
-
+    setValid() {
+        this.errorElement.textContent = '';
+        this.input.classList.remove('popup__input_invalid');
     }
-    // включение/отключение кнопки если хотя бы одно поле формы Add невалидно
-    checkFildsAddForm(button) {
 
-        this.button = button;
+    // включение/выключение кнопки формы в зависимости от статуса полей ввода
+    checkFields() {
+        this.isValidForm = true;
 
-        const formNewName = formNew.elements.name;
-        const formNewLink = formNew.elements.link;
+        this.inputs.forEach( el => {
+            if (!(this.inputValidate(el))) this.isValidForm = false;
+        });
 
-        if (this.inputValidate(formNewName) === true && this.inputValidate(formNewLink) === true) {
-            this.switchOnButton(this.button);
-        } else {
-            this.switchOffButton(this.button);
+        if (!this.isValidForm) {
+            this.button.setAttribute('disabled', true);
+            this.button.classList.add('popup__button_disabled');
+        }
+        if (this.isValidForm) {
+            this.button.removeAttribute('disabled', true);
+            this.button.classList.remove('popup__button_disabled');
         }
     }
-    // включение/отключение кнопки если хотя бы одно поле формы Edit невалидно
-    checkFildsEditForm(button) {
-
-        this.button = button;
-
-        const formEditName = formEdit.elements.userName;
-        const formEditAbout = formEdit.elements.userAbout;
-
-        if (this.inputValidate(formEditName) === true && this.inputValidate(formEditAbout) === true) {
-            this.switchOnButton(this.button);
-        } else {
-            this.switchOffButton(this.button);
-        }
-
-    }
-    // включение/выключение кнопки формы Avatar
-    checkFildsAvatarForm(button) {
-
-        this.button = button;
-
-        const formAvatarLink = formAvatar.elements.link;
-
-        if (this.inputValidate(formAvatarLink) === true) {
-            this.switchOnButton(this.button);
-        } else {
-            this.switchOffButton(this.button);
-        }
-
-    }
-    // выключение кнопки
-    switchOffButton(button) {
-
-        button.setAttribute('disabled', true);
-        button.classList.add('popup__button_disabled');
-
-    }
-    // включение кнопки
-    switchOnButton(button) {
-
-        button.removeAttribute('disabled', true);
-        button.classList.remove('popup__button_disabled');
-
-    }
-
 }
