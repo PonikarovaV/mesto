@@ -35,7 +35,7 @@ class Api {
                 if (res.ok) {
                     return res.json();
                 }
-                return Promise.reject(`Ouch! ${res.status}`);
+                return Promise.reject(`Что-то пошло не так... ${res.status}`);
             });
     }
 

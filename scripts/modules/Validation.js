@@ -9,6 +9,7 @@ class Validation {
         this.button = this.form.querySelector('.popup__button');
         this.setEventListeners = this.setEventListeners.bind(this);
         
+        
     }
 
     // слушатель полей ввода
@@ -55,17 +56,12 @@ class Validation {
 
     // включение/выключение кнопки формы в зависимости от статуса полей ввода
     checkFields() {
-        this.isValidForm = true;
+        let inputsStatus = this.inputs.some(el => el.classList.contains('popup__input_invalid') || el.validity.valueMissing);
 
-        this.inputs.forEach( el => {
-            if (!(this.inputValidate(el))) this.isValidForm = false;
-        });
-
-        if (!this.isValidForm) {
+        if (inputsStatus === true) {
             this.button.setAttribute('disabled', true);
             this.button.classList.add('popup__button_disabled');
-        }
-        if (this.isValidForm) {
+        } else {
             this.button.removeAttribute('disabled', true);
             this.button.classList.remove('popup__button_disabled');
         }
