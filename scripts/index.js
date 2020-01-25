@@ -28,7 +28,12 @@ const closePicture = popupPicture.querySelector('.popup__close');
 const api = new Api({
     baseUrl: 'http://95.216.175.5/cohort6',
     headers: {
+<<<<<<< HEAD
 ...
+=======
+        authorization: '...',
+        'Content-Type': 'application/json'
+>>>>>>> develop
     }
 });
 
