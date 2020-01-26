@@ -9,6 +9,7 @@ class Gallery extends Popup {
         this.form = options.domElement;
         this.name = options.domElement.name;
         this.link = options.domElement.link;
+        this.button = options.domElement.addButton;
     }
 
     listenForm() {
@@ -21,5 +22,7 @@ class Gallery extends Popup {
             .catch(error => alert(error));
 
         this.form.reset();
+        this.button.setAttribute('disabled', true);
+        this.button.classList.add('popup__button_disabled');
     }
 }
