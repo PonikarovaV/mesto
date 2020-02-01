@@ -11,6 +11,7 @@
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/loader/loader.css);
+@import url(../blocks/loader/_active/loader_active.css);
 
 body {
   background-color: #000;

@@ -1,5 +1,3 @@
-'use strict';
-
 class Validation {
     constructor(form, messages) {
 
@@ -67,3 +65,5 @@ class Validation {
         }
     }
 }
+
+export {Validation};
