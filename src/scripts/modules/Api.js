@@ -1,5 +1,3 @@
-'use strict';
-
 class Api {
     constructor(options) {
 
@@ -126,3 +124,5 @@ class Api {
             });
     }
 }
+
+export {Api};

@@ -1,5 +1,3 @@
-'use strict';
-
 class CardList {
     constructor(container, cardTemplate) {
 
@@ -28,3 +26,5 @@ class CardList {
     }
 
 }
+
+export {CardList};
