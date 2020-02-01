@@ -1,7 +1,0 @@
-@import url(./__ball/pacman__ball.css);
-
-.pacman {
-    margin: auto;
-    position: relative;
-    top: 50%; left: 50%; 
-}
