@@ -34,10 +34,10 @@ const closeNew = popupAddCard.querySelector('.popup__close');
 const closeAvatar = popupAvatar.querySelector('.popup__close');
 const closePicture = popupPicture.querySelector('.popup__close');
 
-
+const serverUrl = NODE_ENV === 'development' ? 'http://95.216.175.5/cohort6' : 'https://95.216.175.5/cohort6';
 // экземпляры классов
 const api = new Api({
-    baseUrl: 'http://95.216.175.5/cohort6',
+    baseUrl: serverUrl,
     headers: {
         authorization: 'fb601636-bec8-45e8-8de7-0be5453f9835',
         'Content-Type': 'application/json'
