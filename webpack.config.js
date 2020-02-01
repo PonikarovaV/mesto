@@ -35,9 +35,9 @@ module.exports = {
             use: [
                 
                 {
-                    loader: 'file-loader?name=./images/[name].[ext]',
+                    loader: 'file-loader',
                     options: {
-                        name: 'images/[name].[ext]',
+                        name: './images/[name].[ext]',
                         esModule: false
                     }
                 },
@@ -82,7 +82,7 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             inject: false,
-            template: './src/index.html',
+            template: './index.html',
             filename: 'index.html'
         }),
         new WebpackMd5Hash(),
