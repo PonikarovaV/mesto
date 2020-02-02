@@ -28,20 +28,20 @@ module.exports = {
                     (isDev ? 'style-loader' : MiniCssExtractPlugin.loader),
                              'css-loader', 
                              'postcss-loader'
-                    ]
+                 ]
         },
         {
             test: /\.(png|jpe?g|gif|svg|ico)$/i,
             use: [
                 
-                {
+                 {
                     loader: 'file-loader',
                     options: {
                         name: './images/[name].[ext]',
                         esModule: false
                     }
-                },
-                {
+                 },
+                 {
                     loader: 'image-webpack-loader',
                     options: {
                         mozjpeg: {
@@ -59,8 +59,8 @@ module.exports = {
                         speed: 4,
                         }
                     }
-                }
-            ]
+                 }
+                 ]
         },
         {
             test: /\.(eot|ttf|woff|woff2)$/,
