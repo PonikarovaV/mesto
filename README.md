@@ -2,7 +2,7 @@
 
 Учебный проект направлен на отработку навыков работы с JavaScript, ООП, API, валидацией форм.
 
-[Ссылка на проект] (https://ponikarovav.github.io/mesto/)
+[Ссылка на проект](https://ponikarovav.github.io/mesto/)
 
 ## Задачи проекта
 
