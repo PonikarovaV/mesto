@@ -1,4 +1,4 @@
-'use strict';
+import {Popup} from './Popup.js';
 
 class Profile extends Popup {
     constructor(options) {
@@ -8,6 +8,7 @@ class Profile extends Popup {
         this.form = options.domElement;
         this.name = options.domElement.userName;
         this.about = options.domElement.userAbout;
+        this.loader = options.loading;
         this.userInfoName = document.querySelector('.user-info__name');
         this.userInfoJob = document.querySelector('.user-info__job');
     }
@@ -17,7 +18,9 @@ class Profile extends Popup {
             .then((res) => {
                 this.fullfillForm(res.name, res.about);
             })
-            .then(loader.style.display = 'none')
+            .then(() => {
+                this.loader.classList.remove('loader_active');
+            })
             .then(this.close())
             .catch(error => alert(error));
     }
@@ -30,3 +33,5 @@ class Profile extends Popup {
         this.about.setAttribute('value', `${about}`);
     }
 }
+
+export {Profile};

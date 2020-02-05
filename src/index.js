@@ -1,5 +1,16 @@
 'use strict';
 
+import './pages/index.css';
+import {errorMessages} from './scripts/enums/error_messages.js';
+import {Api} from './scripts/modules/Api.js';
+import {Card} from './scripts/modules/Card.js';
+import {CardList} from './scripts/modules/CardList.js';
+import {Gallery} from './scripts/modules/Gallery.js';
+import {Profile} from './scripts/modules/Profile';
+import {Avatar} from './scripts/modules/Avatar.js';
+import {Preview} from './scripts/modules/Preview';
+import {Validation} from './scripts/modules/Validation';
+
 // получение форм
 const formNew = document.forms.new;
 const formProfile = document.forms.profile;
@@ -23,12 +34,13 @@ const closeNew = popupAddCard.querySelector('.popup__close');
 const closeAvatar = popupAvatar.querySelector('.popup__close');
 const closePicture = popupPicture.querySelector('.popup__close');
 
+const serverUrl = NODE_ENV === 'development' ? 'http://praktikum.tk/cohort6' : 'https://praktikum.tk/cohort6';
 
 // экземпляры классов
 const api = new Api({
-    baseUrl: 'http://95.216.175.5/cohort6',
+    baseUrl: serverUrl,
     headers: {
-        authorization: '...',
+        authorization: 'fb601636-bec8-45e8-8de7-0be5453f9835',
         'Content-Type': 'application/json'
     }
 });
@@ -40,31 +52,37 @@ const card = new Card(api);
 const cardsGallery = new CardList(placesList, card);
 const profile = new Profile({
     domElement: formProfile,
-    request: api
+    request: api,
+    loading: loader
 });
 const gallery = new Gallery({
     domElement: formNew,
     request: api,
-    addCards: cardsGallery
+    addCards: cardsGallery,
+    loading: loader
 });
 const avatar = new Avatar({
     domElement: formAvatar,
-    request: api
+    request: api,
+    loading: loader
 });
 const preview = new Preview({
-    domElement: popupPicture
+    domElement: popupPicture,
+    loading: loader
 });
 
 // обращение к методам классов/загрузка страницы
 function loaderPage() {
-    loader.style.display = 'block';
+    loader.classList.add('loader_active');
     api.getPage()
         .then(([user, cards]) => {
             profile.fullfillForm(user.name, user.about);
             avatar.changeAvatar(user.avatar);
             cardsGallery.render(cards, user._id);
         })
-        .then(() => {loader.style.display = 'none'})
+        .then(() => {
+            loader.classList.remove('loader_active');
+        })
         .catch(error => alert(error));
 }
 
@@ -113,19 +131,19 @@ closePicture.addEventListener('click', function() {
 // слушатели форм
 formProfile.addEventListener('submit', (event) => {
     event.preventDefault();
-    loader.style.display = 'block';
+    loader.classList.add('loader_active');
     profile.listenForm();
 });
 
-formNew.addEventListener('submit', () => {
+formNew.addEventListener('submit', (event) => {
     event.preventDefault();
-    loader.style.display = 'block';
+    loader.classList.add('loader_active');
     gallery.listenForm();
 });
 
-formAvatar.addEventListener('submit', () => {
+formAvatar.addEventListener('submit', (event) => {
     event.preventDefault();
-    loader.style.display = 'block';
+    loader.classList.add('loader_active');
     avatar.listenForm();
 });
 

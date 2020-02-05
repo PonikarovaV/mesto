@@ -1,5 +1,3 @@
-'use strict';
-
 class Card {
     constructor(api) {
 
@@ -74,3 +72,5 @@ class Card {
 
     }
 }
+
+export {Card};

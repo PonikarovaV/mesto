@@ -1,4 +1,4 @@
-'use strict';
+import {Popup} from './Popup.js';
 
 class Gallery extends Popup {
     constructor(options) {
@@ -10,6 +10,7 @@ class Gallery extends Popup {
         this.name = options.domElement.name;
         this.link = options.domElement.link;
         this.button = options.domElement.addButton;
+        this.loader = options.loading;
     }
 
     listenForm() {
@@ -17,7 +18,9 @@ class Gallery extends Popup {
             .then((res) => {
                 this.addCards.addCard(res, res.owner._id);
             })
-            .then(loader.style.display = 'none')
+            .then(() => {
+                this.loader.classList.remove('loader_active');
+            })
             .then(this.close())
             .catch(error => alert(error));
 
@@ -26,3 +29,5 @@ class Gallery extends Popup {
         this.button.classList.add('popup__button_disabled');
     }
 }
+
+export {Gallery};
