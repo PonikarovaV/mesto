@@ -8,67 +8,68 @@ const webpack = require('webpack');
 
 
 module.exports = {
-    entry: { main: './src/index.js' },
+    entry: {
+        main: './src/index.js'
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].[chunkhash].js'
     },
     module: {
-        rules: [
-        {
-            test: /\.js$/,
-            exclude: /node_modules/,
-            use: {
-              loader: "babel-loader"
-            }
-        },
-        {
-            test: /\.css$/i,
-            use: [
+        rules: [{
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader"
+                }
+            },
+            {
+                test: /\.css$/i,
+                use: [
                     (isDev ? 'style-loader' : MiniCssExtractPlugin.loader),
-                             'css-loader', 
-                             'postcss-loader'
-                 ]
-        },
-        {
-            test: /\.(png|jpe?g|gif|svg|ico)$/i,
-            use: [
-                
-                 {
-                    loader: 'file-loader',
-                    options: {
-                        name: './images/[name].[ext]',
-                        esModule: false
-                    }
-                 },
-                 {
-                    loader: 'image-webpack-loader',
-                    options: {
-                        mozjpeg: {
-                        progressive: true,
-                        quality: 65,
-                        },
-                        optipng: {
-                        enabled: false,
-                        },
-                        gifsicle: {
-                        interlaced: false,
-                        },
-                        pngquant: {
-                        quality: [0.65, 0.90],
-                        speed: 4,
+                    'css-loader',
+                    'postcss-loader'
+                ]
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg|ico)$/i,
+                use: [
+
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: './images/[name].[ext]',
+                            esModule: false
+                        }
+                    },
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            mozjpeg: {
+                                progressive: true,
+                                quality: 65,
+                            },
+                            optipng: {
+                                enabled: false,
+                            },
+                            gifsicle: {
+                                interlaced: false,
+                            },
+                            pngquant: {
+                                quality: [0.65, 0.90],
+                                speed: 4,
+                            }
                         }
                     }
-                 }
-                 ]
-        },
-        {
-            test: /\.(eot|ttf|woff|woff2)$/,
-            loader: 'file-loader?name=./vendor/[name].[ext]'
-        }
+                ]
+            },
+            {
+                test: /\.(eot|ttf|woff|woff2)$/,
+                loader: 'file-loader?name=./vendor/[name].[ext]'
+            }
         ]
-      },
-    plugins: [ 
+    },
+    plugins: [
         new MiniCssExtractPlugin({
             filename: 'style.[contenthash].css',
         }),
@@ -76,7 +77,7 @@ module.exports = {
             assetNameRegExp: /\.css$/g,
             cssProcessor: require('cssnano'),
             cssProcessorPluginOptions: {
-                    preset: ['default'],
+                preset: ['default'],
             },
             canPrint: true
         }),

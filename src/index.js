@@ -135,13 +135,13 @@ formProfile.addEventListener('submit', (event) => {
     profile.listenForm();
 });
 
-formNew.addEventListener('submit', () => {
+formNew.addEventListener('submit', (event) => {
     event.preventDefault();
     loader.classList.add('loader_active');
     gallery.listenForm();
 });
 
-formAvatar.addEventListener('submit', () => {
+formAvatar.addEventListener('submit', (event) => {
     event.preventDefault();
     loader.classList.add('loader_active');
     avatar.listenForm();
